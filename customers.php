@@ -1,7 +1,6 @@
 <?php
 	require('header.php');
 	require_once('model/db.php');
-	require_once('model/store_obj.php');
 	// Add Store
 	if(isset($_POST['addOrder']) && 
 		isset($_POST['orderState']) && 

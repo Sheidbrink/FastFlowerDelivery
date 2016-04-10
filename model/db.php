@@ -1,6 +1,7 @@
 <?php
 require('store_obj.php');
 require('orders_obj.php');
+require('driver_obj.php');
 require('vendor/autoload.php');
 $mongo = new MongoDB\Client('mongodb://localhost:27017');
 $db = $mongo->fastFlower;
@@ -55,12 +56,17 @@ function dbAddOrder($order) {
 
 function dbGetOrder($id) {
 	global $orderDB;
-	$query = array('_id' => new MongoDB\BSON\ObjectId($id));
-	$order = $orderDB->findOne($query);
-	if(isset($order)) {
-		return resultToOrder($order);
+	try {
+		$query = array('_id' => new MongoDB\BSON\ObjectId($id));
+		$order = $orderDB->findOne($query);
+		if(isset($order)) {
+			return resultToOrder($order);
+		}
 	}
-	return null;
+	catch (Exception $e){}
+	finally {
+		return null;
+	}
 }
 
 function dbGetOrders() {
@@ -82,5 +88,42 @@ function resultToOrder($result) {
 	return $toReturn;
 }
 	
+function dbAddDriver($driver) {
+	global $driverDB;
+	$result = $driverDB->insertOne($driver);
+	return $result->getInsertedID();
+}
 
+function dbGetDriver($id) {
+	global $driver;
+	try {
+		$query = array('_id' => new MongoDB\BSON\ObjectId($id));
+		$driver = $driverDB->findOne($query);
+		if(isset($driver)) {
+			return resultToDriver($driver);
+	
+		}
+	}
+	catch (Exception $e){}
+	finally {
+		return null;
+	}
+}
+
+function dbGetDrivers() {
+	global $driverDB;
+	$toReturn = array();
+	$result = $driverDB->find();
+	foreach($result as $driver) {
+		array_push($toReturn, resultToDriver($driver));
+	}
+	return $toReturn;
+}
+
+function resultToDriver($result) {
+	$toReturn = new driver($result['name'], $result['state'], $result['city']);
+	$toReturn->deliveries = $result['deliveries'];
+	$toReturn->id = $result['_id'];
+	return $toReturn;
+}
 ?>
