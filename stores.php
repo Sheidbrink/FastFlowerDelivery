@@ -21,6 +21,7 @@
 		$get_store = dbGetStore($store_name);
 		if(isset($get_store)) {
 			echo "<h1>$get_store->name</h1>";
+			echo "Location: $store->city, $store->state";
 			foreach($get_store->orders as $order) {
 				echo "<br />Order for: ";
 				foreach($order->ordered_flowers as $flower) {
@@ -36,7 +37,7 @@
 	else {
 		require('store_form.php');
 		foreach(dbGetStores() as $store) {
-			echo "<h1>$store->name</h1>";
+			echo "<h1><a href=\"?store=$store->name\">$store->name</a></h1>";
 			echo "Id: $store->id <br />";
 			echo "Location: $store->city, $store->state";
 		}

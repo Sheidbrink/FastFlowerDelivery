@@ -29,7 +29,7 @@
 	else {
 		require('driver_form.php');
 		foreach(dbGetDrivers() as $driver) {
-			echo "<h1>$driver->name</h1>";
+			echo "<h1><a href=\"?driverID=$driver->id\">$driver->name</a></h1>";
 			echo "id: $driver->id";
 			echo '<br /> Deliveries: ';
 			foreach($driver->deliveries as $id) {

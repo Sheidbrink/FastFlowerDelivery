@@ -58,7 +58,7 @@
 	else {
 		require('order_form.php');
 		foreach(dbGetOrders() as $order) {
-			echo "<h1>$order->id</h1>";
+			echo "<h1><a href=\"?orderID=$order->id\">$order->id</a></h1>";
 			echo "Flowers: ";
 			foreach($order->ordered_flowers as $flower) {
 				echo "$flower, ";
