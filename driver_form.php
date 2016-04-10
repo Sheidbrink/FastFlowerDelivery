@@ -14,6 +14,10 @@
 				<td><input id="driverState" type="text" name="driverState"> </td>
 			</tr>
 			<tr>
+				<td>Phone:</td>
+				<td><input id="driverPhone" type="text" name="driverPhone"> </td>
+			</tr>
+			<tr>
 				<td><input type="submit" value="Add Driver"></td>
 			</tr>
 		</table>

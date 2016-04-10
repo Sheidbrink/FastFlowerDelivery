@@ -2,10 +2,11 @@
 	require('header.php');
 	require_once('model/db.php');
 	// Add Store
-	if(isset($_POST['addDriver']) && isset($_POST['driverState']) && isset($_POST['driverCity'])) {
+	if(isset($_POST['addDriver']) && isset($_POST['driverState']) && isset($_POST['driverCity']) && isset($_POST['driverPhone'])) {
 		$d = new driver(filter_var($_POST['addDriver'], FILTER_SANITIZE_STRING), 
 				filter_var($_POST['driverState'], FILTER_SANITIZE_STRING),
-				filter_var($_POST['driverCity'], FILTER_SANITIZE_STRING));
+				filter_var($_POST['driverCity'], FILTER_SANITIZE_STRING),
+				filter_var($_POST['driverPhone'], FILTER_SANITIZE_NUMBER_INT));
 		$id = dbAddDriver($d);
 		echo "$d->name Added with id $id";
 	}
@@ -31,6 +32,7 @@
 		foreach(dbGetDrivers() as $driver) {
 			echo "<h1><a href=\"?driverID=$driver->id\">$driver->name</a></h1>";
 			echo "id: $driver->id";
+			echo "<br />Phone: $driver->phone";
 			echo '<br /> Deliveries: ';
 			foreach($driver->deliveries as $id) {
 				echo "<br /> $id";

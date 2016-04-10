@@ -18,6 +18,10 @@
 				<td><input id="orderState" type="text" name="orderState"> </td>
 			</tr>
 			<tr>
+				<td>Email:</td>
+				<td><input id="orderEmail" type="text" name="orderEmail"> </td>
+			</tr>
+			<tr>
 				<td>Urgent:</td>
 				<td>
 					<select name="urgent">

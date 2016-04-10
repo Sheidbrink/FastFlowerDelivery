@@ -80,7 +80,7 @@ function dbGetOrders() {
 }
 
 function resultToOrder($result) {
-	$toReturn = new order($result['ordered_flowers'], $result['state'], $result['city'], $result['address']);
+	$toReturn = new order($result['ordered_flowers'], $result['state'], $result['city'], $result['address'], $result['email']);
 	$toReturn->id = $result['_id'];
 	$toReturn->assigned_driver = $result['assigned_driver'];
 	$toReturn->urgent = $result['urgent'];
@@ -121,7 +121,7 @@ function dbGetDrivers() {
 }
 
 function resultToDriver($result) {
-	$toReturn = new driver($result['name'], $result['state'], $result['city']);
+	$toReturn = new driver($result['name'], $result['state'], $result['city'], $result['phone']);
 	$toReturn->deliveries = $result['deliveries'];
 	$toReturn->id = $result['_id'];
 	return $toReturn;

@@ -6,11 +6,13 @@
 		public $state = '';
 		public $rating = '';
 		public $deliveries = array();
-		function __construct($n, $s, $c)
+		public $phone = '';
+		function __construct($n, $s, $c, $p)
 		{
 			$this->name = $n;
 			$this->state = $s;
 			$this->city = $c;
+			$this->phone = $p;
 		}
 	}
 ?>
