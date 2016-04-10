@@ -62,9 +62,9 @@ function dbGetOrder($id) {
 		if(isset($order)) {
 			return resultToOrder($order);
 		}
+		return null;
 	}
-	catch (Exception $e){}
-	finally {
+	catch (Exception $e){
 		return null;
 	}
 }
@@ -95,7 +95,7 @@ function dbAddDriver($driver) {
 }
 
 function dbGetDriver($id) {
-	global $driver;
+	global $driverDB;
 	try {
 		$query = array('_id' => new MongoDB\BSON\ObjectId($id));
 		$driver = $driverDB->findOne($query);
@@ -103,9 +103,9 @@ function dbGetDriver($id) {
 			return resultToDriver($driver);
 	
 		}
+		return null;
 	}
-	catch (Exception $e){}
-	finally {
+	catch (Exception $e){
 		return null;
 	}
 }
